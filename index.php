@@ -1,4 +1,10 @@
 <?php
+/**
+ * RenewDomainPage
+ * @author AyagawaSeirin
+ * @url https://zwz.moe/
+ * @github https://github.com/AyagawaSeirin/RenewDomainPage
+ */
 //先处理图片伪静态问题
 if($_GET['url'] == '/img.png'){
     @ header("Content-Type:image/png");
@@ -27,6 +33,11 @@ foreach ($spider as $value) {
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/css/mdui.min.css">
     <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
+    <!--
+    Powered by AyagawaSeirin~
+    https://zwz.moe/
+    https://github.com/AyagawaSeirin/RenewDomainPage
+    -->
 </head>
 <body>
 <style>
@@ -64,7 +75,7 @@ foreach ($spider as $value) {
         progress.style.width = ((100 - countDown)).toString() + "%";
         if (countDown == 0) {
             clearInterval(interval);
-            //window.location.replace("<?//=$url?>//");
+            window.location.replace("<?=$url?>");
         }
     }
 
