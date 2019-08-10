@@ -6,14 +6,16 @@
  * @url https://rmb.moe/
  * @github https://github.com/AyagawaSeirin/RenewDomainPage
  */
-//先处理图片伪静态问题
-if ($_GET['url'] == '/img.png') {
-    @ header("Content-Type:image/png");
-    echo file_get_contents('img.png');
-    return;
-}
 //载入配置文件
 $config = require_once "./config.php";
+
+//先处理图片伪静态问题
+if ($config['img_from'] == true && $_GET['url'] == '/'.$config['img']) {
+    @ header("Content-Type:image/png");
+    echo file_get_contents($config['img']);
+    return;
+}
+//蜘蛛检测
 $UA = $_SERVER['HTTP_USER_AGENT'];
 $spider = array("baiduspider", "googlebot", "haosouspider", "360spider", "soso", "yahoo", "youdaobot", "yodaobot", "msnbot", "bingbot", "verdantspider");
 $url = $config['scheme'] . $config['domain'] . $_GET['url'];
@@ -35,7 +37,7 @@ if ($_SERVER['HTTP_REFERER'] == true && $config['ILJ'] == true) {
 ?>
 <html>
 <head>
-    <title>换域名啦qwq</title>
+    <title><?= $config['title'] ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
@@ -59,22 +61,22 @@ if ($_SERVER['HTTP_REFERER'] == true && $config['ILJ'] == true) {
     .seirin-card-pic {
         width: 200px;
         height: 200px;
-        background-image: url("/img.png");
+        background-image: url("/<?= $config['img'] ?>");
         background-repeat: no-repeat;
         background-size: 100%;
     }
 </style>
 <div class="mdui-card seirin-card">
-    <div class="seirin-card-pic"/></div>
+    <div class="seirin-card-pic"/>
     <!--Pixiv: 65309723-->
 </div>
 <div class="mdui-progress">
     <div class="mdui-progress-determinate mdui-color-pink-accent" style="width: 30%;" id="progress"></div>
 </div>
 <div class="mdui-typo mdui-text-center">
-    <div class="mdui-typo-title" style="margin-top:10px;color:#F93995">更换域名了噢~</div>
+    <div class="mdui-typo-title" style="margin-top:10px;color:#F93995"><?= $config['content'] ?></div>
     <a href="<?= $url ?>" style="font-size: 30px;"><?= $config['domain'] ?></a>
-    <a href="http://rdp.test">123</a>
+<!--    <a href="http://rdp.test">123</a>-->
 </div>
 <script>
     var progress = document.getElementById("progress");
@@ -85,7 +87,7 @@ if ($_SERVER['HTTP_REFERER'] == true && $config['ILJ'] == true) {
         progress.style.width = ((100 - countDown)).toString() + "%";
         if (countDown == 0) {
             clearInterval(interval);
-            window.location.replace("<?=$url?>");
+            //window.location.replace("<?=$url?>");
         }
     }
 

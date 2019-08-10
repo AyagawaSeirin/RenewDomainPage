@@ -7,7 +7,10 @@
 **提示页面跳转**，也就是出现一个提示页面域名已更改，再配上跳转。这样对访客很友好，但对于SEO而言以前的收录链接相当于全部作废了。<br>
 
 而咱的这个跳转页面则是整合了这两种的优点，即有跳转提示页面，又照顾到了SEO问题。<br>
-
+## 版本记录
+master分支为最新稳定版本，dev分支为开发进度，其他分支为各个版本。<br>
+[V1.0.0](https://github.com/AyagawaSeirin/RenewDomainPage/tree/v1.0.0 "V1.0.0") - 2019.7.19<br>
+[V2.0.0](https://github.com/AyagawaSeirin/RenewDomainPage/tree/v2.0.0 "V2.0.0") - 2019.8.11<br>
 ## 介绍
 为了兼顾访客体验和SEO问题，我做了这个东西。<br>
 [点击这里效果预览](https://www.pplin.cn/ "点击这里效果预览")<br>
@@ -33,21 +36,22 @@ rewrite ^(.*?)$ /index.php?url=$1;
 ```
 >项目已经配置好了Apache伪静态规则在.htaccess文件内，如果您的Apache支持使用.htaccess文件配置伪静态，则不需要再手动配置了。
 
-### 域名设置
-编辑index.php文件，在第15行左右找到$domain变量，将变量值改为您的新域名。默认是zwz.moe，修改掉即可。
-```php
-$domain = 'example.com';
-```
-跳转目标默认是HTTPS，如果您的新域名网站暂不支持HTTPS，请修改第18行左右的`$url`变量，将`https://`修改为`http://`:
-```php
-$url = 'http://' . $domain . $_GET['url'];
-```
+### 配置项目
+编辑config.php文件，即可快捷配置项目。<br>
+**只有domain和scheme参数需要您自己配置，其他参数保持默认即可，若您需要深度自定义可配置其他参数。**<br>
+**domain：跳转目标域名。<br>
+scheme：跳转目标的协议头，https://或http://<br>**
+ILJ：站内链接是否直接跳转，假如访问来源是站内（目标域名），则直接跳转不显示倒计时页面。因为更换域名后网站可能有些链接没来得及更改域名，每次访问都提示会影响访客体验。<br>
+title：网站标题。<br>
+content：网站内容文本。<br>
+img_from：图片来源，true为图片在该网站（跳转提示站）内，false为图片为网站外的链接。<br>
+img：图片路径，若参数img_from为true则输入相对于网站根目录路径，第一个斜杠不需要输入。若参数img_from为false则输入图片绝对路径，不能为本跳转站图片。
 
 到此为止就配置完毕了<br>
 ## 技术问题
 ### 前端设计
 由于咱的前端水平较低，这个跳转页面的设计是模仿的另一个跳转页面：[点击这里](https://redirect.yuzu.im/yuzu.php?domain=rmb.moe "点击这里")<br>
-另外，图片的P站ID：65309723<br>
+另外，默认图片的P站ID：65309723<br>
 同时还使用了MDUI作为前端框架<br>
 ## 伪静态规则缺陷
 这个伪静态规则十分直接，把所有目录或文件都直接伪静态到了index.php。<br>
