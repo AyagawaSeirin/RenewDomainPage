@@ -1,5 +1,5 @@
 # RenewDomainPage
-项目介绍与使用教程：[https://zwz.moe/dev/90.html](https://zwz.moe/dev/90.html "使用教程")
+项目介绍与使用教程：[https://rmb.moe/dev/90.html](https://zwz.moe/dev/90.html "使用教程")
 
 域名更换后，站长们有两个选择。<br>
 域名跳转方案，便是站长最头疼的问题。<br>
@@ -46,7 +46,7 @@ $url = 'http://' . $domain . $_GET['url'];
 到此为止就配置完毕了<br>
 ## 技术问题
 ### 前端设计
-由于咱的前端水平较低，这个跳转页面的设计是模仿的另一个跳转页面：[点击这里](https://redirect.yuzu.im/yuzu.php?domain=zwz.moe "点击这里")<br>
+由于咱的前端水平较低，这个跳转页面的设计是模仿的另一个跳转页面：[点击这里](https://redirect.yuzu.im/yuzu.php?domain=rmb.moe "点击这里")<br>
 另外，图片的P站ID：65309723<br>
 同时还使用了MDUI作为前端框架<br>
 ## 伪静态规则缺陷

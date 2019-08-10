@@ -2,23 +2,32 @@
 /**
  * RenewDomainPage
  * @author AyagawaSeirin
- * @url https://zwz.moe/
+ * @version 2.0.0
+ * @url https://rmb.moe/
  * @github https://github.com/AyagawaSeirin/RenewDomainPage
  */
 //先处理图片伪静态问题
-if($_GET['url'] == '/img.png'){
+if ($_GET['url'] == '/img.png') {
     @ header("Content-Type:image/png");
     echo file_get_contents('img.png');
     return;
 }
-
-$domain = 'zwz.moe';
+//载入配置文件
+$config = require_once "./config.php";
 $UA = $_SERVER['HTTP_USER_AGENT'];
 $spider = array("baiduspider", "googlebot", "haosouspider", "360spider", "soso", "yahoo", "youdaobot", "yodaobot", "msnbot", "bingbot", "verdantspider");
-$url = 'https://' . $domain . $_GET['url'];
+$url = $config['scheme'] . $config['domain'] . $_GET['url'];
 foreach ($spider as $value) {
     if (stripos($UA, $value) !== false) {
         header('HTTP/1.1 301 Moved Permanently');
+        header('Location: ' . $url);
+        return;
+    }
+}
+
+if ($_SERVER['HTTP_REFERER'] == true && $config['ILJ'] == true) {
+    $domain_from = parse_url($_SERVER['HTTP_REFERER'])['host'];
+    if ($domain_from == $config['domain']) {
         header('Location: ' . $url);
         return;
     }
@@ -35,7 +44,7 @@ foreach ($spider as $value) {
     <script src="https://cdnjs.loli.net/ajax/libs/mdui/0.4.2/js/mdui.min.js"></script>
     <!--
     Powered by AyagawaSeirin~
-    https://zwz.moe/
+    https://rmb.moe/
     https://github.com/AyagawaSeirin/RenewDomainPage
     -->
 </head>
@@ -56,7 +65,7 @@ foreach ($spider as $value) {
     }
 </style>
 <div class="mdui-card seirin-card">
-    <div class="seirin-card-pic"/>
+    <div class="seirin-card-pic"/></div>
     <!--Pixiv: 65309723-->
 </div>
 <div class="mdui-progress">
@@ -64,7 +73,8 @@ foreach ($spider as $value) {
 </div>
 <div class="mdui-typo mdui-text-center">
     <div class="mdui-typo-title" style="margin-top:10px;color:#F93995">更换域名了噢~</div>
-    <a href="<?=$url?>" style="font-size: 30px;"><?= $domain ?></a>
+    <a href="<?= $url ?>" style="font-size: 30px;"><?= $config['domain'] ?></a>
+    <a href="http://rdp.test">123</a>
 </div>
 <script>
     var progress = document.getElementById("progress");
