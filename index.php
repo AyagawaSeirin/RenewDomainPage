@@ -76,7 +76,6 @@ if ($_SERVER['HTTP_REFERER'] == true && $config['ILJ'] == true) {
 <div class="mdui-typo mdui-text-center">
     <div class="mdui-typo-title" style="margin-top:10px;color:#F93995"><?= $config['content'] ?></div>
     <a href="<?= $url ?>" style="font-size: 30px;"><?= $config['domain'] ?></a>
-<!--    <a href="http://rdp.test">123</a>-->
 </div>
 <script>
     var progress = document.getElementById("progress");
@@ -87,7 +86,7 @@ if ($_SERVER['HTTP_REFERER'] == true && $config['ILJ'] == true) {
         progress.style.width = ((100 - countDown)).toString() + "%";
         if (countDown == 0) {
             clearInterval(interval);
-            //window.location.replace("<?=$url?>");
+            window.location.replace("<?=$url?>");
         }
     }
 
