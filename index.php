@@ -15,6 +15,9 @@ if ($config['img_from'] == true && $_GET['url'] == '/'.$config['img']) {
     echo file_get_contents($config['img']);
     return;
 }
+if($config['img_from'] == true){
+    $config['img'] = '/'.$config['img'];
+}
 //蜘蛛检测
 $UA = $_SERVER['HTTP_USER_AGENT'];
 $spider = array("baiduspider", "googlebot", "haosouspider", "360spider", "soso", "yahoo", "youdaobot", "yodaobot", "msnbot", "bingbot", "verdantspider");
@@ -61,7 +64,7 @@ if ($_SERVER['HTTP_REFERER'] == true && $config['ILJ'] == true) {
     .seirin-card-pic {
         width: 200px;
         height: 200px;
-        background-image: url("/<?= $config['img'] ?>");
+        background-image: url("<?= $config['img'] ?>");
         background-repeat: no-repeat;
         background-size: 100%;
     }
