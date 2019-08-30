@@ -11,6 +11,11 @@
 master分支为最新稳定版本，dev分支为开发进度，其他分支为各个版本。<br>
 [V2.0.0](https://github.com/AyagawaSeirin/RenewDomainPage/tree/v2.0.0 "V2.0.0") - 2019.8.11<br>
 [V1.0.0](https://github.com/AyagawaSeirin/RenewDomainPage/tree/v1.0.0 "V1.0.0") - 2019.7.19<br>
+
+V2.0.0更新特性：<br>
+1.使用独立的文件配置项目，更加方便<br>
+2.更多配置内容，更深度的自定义<br>
+3.新增来源检测，若为目标网站则不显示提示页面(选择开启)<br>
 ## 介绍
 为了兼顾访客体验和SEO问题，我做了这个东西。<br>
 [点击这里效果预览](https://www.pplin.cn/ "点击这里效果预览")<br>
