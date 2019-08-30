@@ -9,13 +9,13 @@
 而咱的这个跳转页面则是整合了这两种的优点，即有跳转提示页面，又照顾到了SEO问题。<br>
 ## 版本记录
 master分支为最新稳定版本，dev分支为开发进度，其他分支为各个版本。<br>
+[V2.1.0](https://github.com/AyagawaSeirin/RenewDomainPage/tree/v2.1.0 "V2.1.0") - 2019.8.30<br>
 [V2.0.0](https://github.com/AyagawaSeirin/RenewDomainPage/tree/v2.0.0 "V2.0.0") - 2019.8.11<br>
 [V1.0.0](https://github.com/AyagawaSeirin/RenewDomainPage/tree/v1.0.0 "V1.0.0") - 2019.7.19<br>
 
-V2.0.0更新特性：<br>
-1.使用独立的文件配置项目，更加方便<br>
-2.更多配置内容，更深度的自定义<br>
-3.新增来源检测，若为目标网站则不显示提示页面(选择开启)<br>
+V2.1.0更新特性：<br>
+1.配置项支持自定义蜘蛛标识<br>
+2.增加默认蜘蛛标识，更完善的应对爬虫<br>
 ## 介绍
 为了兼顾访客体验和SEO问题，我做了这个东西。<br>
 [点击这里效果预览](https://www.pplin.cn/ "点击这里效果预览")<br>
@@ -52,6 +52,7 @@ title：网站标题。
 content：网站内容文本。
 img_from：图片来源，true为图片在该网站（跳转提示站）内，false为图片为网站外的链接。
 img：图片路径，若参数img_from为true则输入相对于网站根目录路径，第一个斜杠不需要输入。若参数img_from为false则输入图片绝对路径，不能为本跳转站图片。
+spider：蜘蛛标识，为数组，将会在UA里寻找蜘蛛标识来判断。
 ```
 到此为止就配置完毕了<br>
 ## 技术问题

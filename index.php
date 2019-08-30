@@ -2,7 +2,7 @@
 /**
  * RenewDomainPage
  * @author AyagawaSeirin
- * @version 2.0.0
+ * @version 2.1.0
  * @url https://rmb.moe/
  * @github https://github.com/AyagawaSeirin/RenewDomainPage
  */
@@ -18,11 +18,11 @@ if ($config['img_from'] == true && $_GET['url'] == '/'.$config['img']) {
 if($config['img_from'] == true){
     $config['img'] = '/'.$config['img'];
 }
+
 //蜘蛛检测
 $UA = $_SERVER['HTTP_USER_AGENT'];
-$spider = array("baiduspider", "googlebot", "haosouspider", "360spider", "soso", "yahoo", "youdaobot", "yodaobot", "msnbot", "bingbot", "verdantspider");
 $url = $config['scheme'] . $config['domain'] . $_GET['url'];
-foreach ($spider as $value) {
+foreach ($config['spider'] as $value) {
     if (stripos($UA, $value) !== false) {
         header('HTTP/1.1 301 Moved Permanently');
         header('Location: ' . $url);
@@ -30,6 +30,7 @@ foreach ($spider as $value) {
     }
 }
 
+//站内链接检测
 if ($_SERVER['HTTP_REFERER'] == true && $config['ILJ'] == true) {
     $domain_from = parse_url($_SERVER['HTTP_REFERER'])['host'];
     if ($domain_from == $config['domain']) {
